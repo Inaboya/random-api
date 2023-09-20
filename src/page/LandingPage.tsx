@@ -9,15 +9,22 @@ const LandingPage: React.FC = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("https://randomuser.me/api/");
+      const response = await axios.get("https://randomuser.me/api/")
       setData(response.data.results);
-      //   setTimeout(getData, 5000);
+        setTimeout(getData, 5000);
     } catch (error) {
       console.log("An error occured" + error);
     }
   };
 
-  console.log(data, "data");
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
+    const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+    const da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+    return `${da}-${mo}-${ye}`;
+  }
+
 
   // call the function
 
@@ -31,20 +38,20 @@ const LandingPage: React.FC = () => {
         <div className="side-1">
           <div className="side-1-wrapper">
             <div className="image-container">
-              <img src="" alt="" />
+              <img src={data[0]?.picture?.large} className="image" alt="" />
             </div>
-            <h1>{data[0]?.name?.title}</h1>
+            <h1 className="heading-text">{`${data[0]?.name?.title} ${data[0]?.name?.first} ${data[0]?.name?.last}`}</h1>
           </div>
         </div>
         <div className="side-2">
           <div className="side-2-wrapper">
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
-            <p className="paragraph-text">UserName</p>
+            <p className="paragraph-text">Email: {data[0]?.email}</p>
+            <p className="paragraph-text">Username: {data[0]?.login?.username}</p>
+            <p className="paragraph-text">Gender: {data[0]?.gender}</p>
+            <p className="paragraph-text">Phone: {data[0]?.phone}</p>
+            <p className="paragraph-text">Country: {data[0]?.location?.country}</p>
+            <p className="paragraph-text">City: {data[0]?.location?.city}</p>
+            <p className="paragraph-text">DOB: {formatDate(data[0].dob.date)}</p>
           </div>
         </div>
       </div>
