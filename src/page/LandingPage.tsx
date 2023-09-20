@@ -36,27 +36,34 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="data-container">
-      <div className="data-container-wrapper">
-        <div className="side-1">
-          <div className="side-1-wrapper">
-            <div className="image-container">
-              <img src={data[0]?.picture?.large} className="image" alt="" />
+        { data && data.length === 0 ? (
+            <div className="no-data">
+                Loading...
             </div>
-            <h1 className="heading-text">{`${data[0]?.name?.title} ${data[0]?.name?.first} ${data[0]?.name?.last}`}</h1>
+        ): (
+            <div className="data-container-wrapper">
+            <div className="side-1">
+              <div className="side-1-wrapper">
+                <div className="image-container">
+                  <img src={data[0].picture.large} className="image" alt="" />
+                </div>
+                <h1 className="heading-text">{`${data[0].name.title} ${data[0]?.name?.first} ${data[0]?.name?.last}`}</h1>
+              </div>
+            </div>
+            <div className="side-2">
+              <div className="side-2-wrapper">
+                <p className="paragraph-text"><span>Email</span>: {data[0].email}</p>
+                <p className="paragraph-text"><span>Username:</span> {data[0].login.username}</p>
+                <p className="paragraph-text"><span>Gender:</span> {data[0].gender}</p>
+                <p className="paragraph-text"><span>Phone:</span> {data[0].phone}</p>
+                <p className="paragraph-text"><span>Country: </span>{data[0].location.country}</p>
+                <p className="paragraph-text"><span>City:</span> {data[0].location.city}</p>
+                {/* <p className="paragraph-text"><span>DOB:</span> {formatDate(data[0].dob.date)}</p> */}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="side-2">
-          <div className="side-2-wrapper">
-            <p className="paragraph-text">Email: {data[0]?.email}</p>
-            <p className="paragraph-text">Username: {data[0]?.login?.username}</p>
-            <p className="paragraph-text">Gender: {data[0]?.gender}</p>
-            <p className="paragraph-text">Phone: {data[0]?.phone}</p>
-            <p className="paragraph-text">Country: {data[0]?.location?.country}</p>
-            <p className="paragraph-text">City: {data[0]?.location?.city}</p>
-            <p className="paragraph-text">DOB: {formatDate(data[0]?.dob?.date)}</p>
-          </div>
-        </div>
-      </div>
+        )}
+     
     </div>
   );
 };
