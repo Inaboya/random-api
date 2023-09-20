@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 const LandingPage: React.FC = () => {
   // declare state to get the data from the api
@@ -23,14 +23,16 @@ const LandingPage: React.FC = () => {
     const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
     const da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
     return `${da}-${mo}-${ye}`;
-  }
+  };
 
+    // call the function to get data
 
-  // call the function
+    useEffect(() => {
+        getData && getData()
+    }, [])
 
-  React.useEffect(() => {
-    getData();
-  }, []);
+    console.log("data =>", data)
+
 
   return (
     <div className="data-container">
@@ -51,7 +53,7 @@ const LandingPage: React.FC = () => {
             <p className="paragraph-text">Phone: {data[0]?.phone}</p>
             <p className="paragraph-text">Country: {data[0]?.location?.country}</p>
             <p className="paragraph-text">City: {data[0]?.location?.city}</p>
-            <p className="paragraph-text">DOB: {formatDate(data[0].dob.date)}</p>
+            <p className="paragraph-text">DOB: {formatDate(data[0]?.dob?.date)}</p>
           </div>
         </div>
       </div>
