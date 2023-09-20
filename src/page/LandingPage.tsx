@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import moment from "moment"
 const LandingPage: React.FC = () => {
   // declare state to get the data from the api
 
@@ -18,20 +19,17 @@ const LandingPage: React.FC = () => {
   };
 
   const formatDate = (date: string) => {
-    const d = new Date(date);
-    const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-    const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-    const da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-    return `${da}-${mo}-${ye}`;
-  };
+    const formattedDate = moment(date).format("DD-MMM-YYYY")
+    return formattedDate
+  }
 
     // call the function to get data
 
     useEffect(() => {
         getData && getData()
+        formatDate(data[0]?.dob?.date)
     }, [])
 
-    console.log("data =>", data)
 
 
   return (
@@ -58,7 +56,7 @@ const LandingPage: React.FC = () => {
                 <p className="paragraph-text"><span>Phone:</span> {data[0].phone}</p>
                 <p className="paragraph-text"><span>Country: </span>{data[0].location.country}</p>
                 <p className="paragraph-text"><span>City:</span> {data[0].location.city}</p>
-                {/* <p className="paragraph-text"><span>DOB:</span> {formatDate(data[0].dob.date)}</p> */}
+                <p className="paragraph-text"><span>DOB:</span> {formatDate(data[0].dob.date)}</p>
               </div>
             </div>
           </div>
