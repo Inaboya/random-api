@@ -27,7 +27,6 @@ const LandingPage: React.FC = () => {
 
     useEffect(() => {
         getData && getData()
-        formatDate(data[0]?.dob?.date)
     }, [])
 
 

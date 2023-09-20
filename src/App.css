@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+ 
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +8,10 @@
 
 .container {
   width: 100vw;
-  height: 100vh;
-  background: #e5ecef;
-  font-family: "Lexend Deca", "Montserrat", sans-serif;
+  background: #0a2640;
+  font-family: "Manrope", "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 62.5%;
-  color: #1c1e1e;
   /* overflow: scroll; */
 }
 
@@ -56,7 +56,7 @@
 }
 
 .heading-text {
-  color: #000;
+  color: #fff;
 
   /* Paragraphs/Text M */
   font-size: 34px;
@@ -66,17 +66,17 @@
 }
 
 span {
-  color: #000;
+  color: #fff;
   text-align: center;
 
   /* Headings/Text XXL */
   font-size: 28px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .paragraph-text {
-  color: #333;
+  color: #fff;
 
   /* Paragraphs/Text M */
   font-size: 18px;
