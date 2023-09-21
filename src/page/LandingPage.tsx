@@ -11,7 +11,7 @@ const LandingPage: React.FC = () => {
   const getData = async () => {
     try {
       const response = await axios.get("https://randomuser.me/api/");
-      setData(response.data.results);
+      setData(response.data.result[0]);
       setTimeout(getData, 5000);
     } catch (error) {
       console.log("An error occured" + error);
@@ -46,7 +46,7 @@ const LandingPage: React.FC = () => {
           <div className="side-2">
             <div className="side-2-wrapper">
               <p className="paragraph-text">
-                <span>Email</span>: {data[0].email}
+                <span>Email:</span> {data[0].email}
               </p>
               <p className="paragraph-text">
                 <span>Username:</span> {data[0].login.username}
